@@ -30,15 +30,29 @@ app.use(express.json());
 //   next();
 // });
 
+// get all of the artists
 app.get('/artists', (req, res) => {
   const artists = getAllArtists();
   res.send(artists);
 });
 
+// post a new artist
 app.post('/artists', (req, res) => {
   res.statusCode = 201;
   const newArtist = req.body;
   res.send(addArtist(newArtist));
+});
+
+// Get the latest artist added
+app.get('/artists/latest', (req, res) => {
+  const latestArtist = getLatestArtist();
+  res.send(latestArtist);
+});
+
+// Get all albums of latest artist
+app.get('/artists/latest/albums', (req, res) => {
+  const latestArtistAlbums = getAlbumsForLatestArtist();
+  res.send(latestArtistAlbums);
 });
 
 // DO NOT MODIFY
